@@ -5,10 +5,12 @@
   {% if list.image %}
   <img src="{{list.image.url}}" alt="no image" style="height: 100px" />
   {% endif %}
-  <li>{{list.title}}</li>
-  <li>${{list.price}}</li>
-  <li>{{list.time}}</li>
-
+  <br />
+  <strong>{{list.title}}</strong>
+  <br />
+  <strong>${{list.price}}</strong>
+  <br />
+  <p>{{list.time}}</p>
   <a href="{% url 'listing' list.id %}">View more</a>
 </ul>
 {% endfor %} {% endblock %}

@@ -16,10 +16,10 @@
   <img src="media/{{list.image}}" alt="" style="height: 100px" />
   <br />
   <strong>{{list.title}}</strong>
-  <li>{{list.category}}</li>
-  <li>{{list.user}}</li>
-  <li>{{list.time}}</li>
   <li>${{list.price}}</li>
+  <li>Category: {{list.category}}</li>
+  <li>Seller: {{list.user}}</li>
+  <p>{{list.time}}</p>
 </ul>
 {% if list.user != current_user %}
 <br />

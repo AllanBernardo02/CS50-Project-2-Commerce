@@ -6,6 +6,7 @@
   <button type="submit" name="remove" value="{{li.id}}">
     Remove to Watchlist
   </button>
+  <a href="{% url 'listing' li.id %}">Go To This Listing</a>
 </form>
 <ul>
   <li>{{li.title}}</li>
@@ -16,6 +17,7 @@
   {% if li.image %}
   <img src="{{li.image.url}}" alt="no image" style="height: 100px" />
   {% endif %}
+  <br />
 </ul>
 {% empty %}
 <h3>Empty</h3>
