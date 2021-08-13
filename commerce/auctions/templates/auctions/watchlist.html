@@ -1,5 +1,5 @@
 {% extends "auctions/layout.html" %} {% block body %}
-<h1>{{user.username}}'s Watchlist</h1>
+<h1>Your Watchlist</h1>
 {% for li in listing %}
 <form action="{% url 'watchlist' %}" method="POST">
   {% csrf_token %}
@@ -18,5 +18,5 @@
   {% endif %}
 </ul>
 {% empty %}
-<h3>no Watchlist</h3>
+<h3>Empty</h3>
 {% endfor %} {% endblock %}
