@@ -1,0 +1,49 @@
+{% extends "auctions/layout.html" %} {% block body %}
+
+<br />
+{% if list.user != current_user %}
+<form action="{% url 'listing' list.id %}" method="POST">
+  {% csrf_token %}
+  <button type="submit" name="button" value="Watchlist">
+    Add to Watchlist
+  </button>
+</form>
+{% endif %} {% if list.user == current_user %}
+<p>This is your Listing</p>
+{% endif %}
+
+<ul>
+  <img src="media/{{list.image}}" alt="" style="height: 100px" />
+  <br />
+  <strong>{{list.title}}</strong>
+  <li>{{list.category}}</li>
+  <li>{{list.user}}</li>
+  <li>{{list.time}}</li>
+  <li>${{list.price}}</li>
+</ul>
+{% if list.user != current_user %}
+<br />
+{% if list.closed %}
+
+<h2>This listing is closed so far</h2>
+
+{% endif %} {% if not list.closed %} {% if message %}
+<p>{{message}}</p>
+{% endif %}
+<p>{{list.bid.count}} Bid/s for this Item</p>
+<form action="{% url 'listing' list.id %}" method="POST">
+  {% csrf_token %} {{ bidform.as_p }}
+  <input type="submit" name="button" value="Place your Bid" />
+</form>
+<br />
+<form action="{% url 'listing' list.id %}" method="POST">
+  {% csrf_token %} {{comment.as_p}}
+  <input type="submit" name="button" value="Add Comment" />
+</form>
+<h2><strong>Comments</strong></h2>
+{% for com in list.comment.all %}
+<p>
+  {{com.comment}} by: <span><strong>{{com.user}}</strong></span> {{com.time}}
+</p>
+
+{% endfor %} {% endif %} {% endif %}{% endblock %}

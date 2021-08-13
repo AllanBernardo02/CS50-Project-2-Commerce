@@ -1,0 +1,16 @@
+{% extends "auctions/layout.html" %} {% block body %}
+<h1>{{title}}</h1>
+{% for cat in catlist %}
+<ul>
+  <li>{{cat.title}}</li>
+  <li>${{cat.price}}</li>
+  <li>{{cat.user}}</li>
+  <li>{{cat.category}}</li>
+  <li>{{cat.time}}</li>
+  {% if li.image %}
+  <img src="{{cat.image.url}}" alt="no image" style="height: 100px" />
+  {% endif %}
+</ul>
+{% empty %}
+<h3>No listing {{title}}</h3>
+{% endfor %} {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "auctions/layout.html" %} {% block body %}
+<!-- kailangan dito "" bawal ang '' -->
+<h2><strong>Your Listings</strong></h2>
+{% for list in listing %} {% if list.closed%}
+
+<form action="{% url 'user_listing' %}" method="POST">
+  {% csrf_token %}
+  <button type="submit" name="remove" value="{{list.id}}">
+    Open This Listing
+  </button>
+  <button type="submit" name="delete" value="{{list.id}}">DELETE</button>
+
+  {% endif %} {% if not list.closed%}
+  <form action="" method="POST">
+    {% csrf_token %}
+    <button type="submit" name="remove" value="{{list.id}}">
+      Close This Listing
+    </button>
+    {% endif %}
+
+    <ul>
+      <li>{{list.title}}</li>
+      <li>${{list.price}}</li>
+      <li>{{list.category}}</li>
+      <li>{{list.time}}</li>
+      {% if list.image %}
+      <img src="{{list.image.url}}" alt="no image" style="height: 100px" />
+      {% endif %}
+    </ul>
+    <h2><strong>Bids </strong></h2>
+    {% for li in list.bid.all %}
+    <p>{{li}}</p>
+    {% endfor %}
+    <h2><strong>Comments</strong></h2>
+    {% for com in list.comment.all %}
+    <p>
+      {{com.comment}} by:
+      <span><strong>{{com.user}}</strong></span> {{com.time}}
+    </p>
+
+    {% endfor %} {% empty %}
+    <a href="{% url 'create_listing' %}">Create your Own Listing now</a>
+    {% endfor %} {% endblock %}
+  </form>
+</form>
