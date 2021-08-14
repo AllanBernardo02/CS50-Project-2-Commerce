@@ -1,4 +1,4 @@
-{% extends "auctions/layout.html" %} {% block body %}
+{% extends "auctions/layout.html" %} {% block body %} {% load tz %}
 <!-- kailangan dito "" bawal ang '' -->
 <h2><strong>Your Listings</strong></h2>
 {% for list in listing %} {% if list.closed%}
@@ -22,7 +22,10 @@
       <li>{{list.title}}</li>
       <li>${{list.price}}</li>
       <li>{{list.category}}</li>
+      {% timezone "Asia/Manila" %}
       <li>{{list.time}}</li>
+      {% endtimezone %}
+      <br />
       {% if list.image %}
       <img src="{{list.image.url}}" alt="no image" style="height: 100px" />
       {% endif %}
@@ -37,7 +40,8 @@
     {% for com in list.comment.all %}
     <p>
       {{com.comment}} by:
-      <span><strong>{{com.user}}</strong></span> {{com.time}}
+      <span><strong>{{com.user}}</strong></span>
+      {% timezone "Asia/Manila" %} {{com.time}} {% endtimezone %}
     </p>
     {% empty %}
     <p>No comments so far..</p>
