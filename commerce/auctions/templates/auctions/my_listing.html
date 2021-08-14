@@ -30,6 +30,8 @@
     <h2><strong>Bids </strong></h2>
     {% for li in list.bid.all %}
     <p>{{li}}</p>
+    {% empty %}
+    <p>No bids so far..</p>
     {% endfor %}
     <h2><strong>Comments</strong></h2>
     {% for com in list.comment.all %}
@@ -37,7 +39,8 @@
       {{com.comment}} by:
       <span><strong>{{com.user}}</strong></span> {{com.time}}
     </p>
-
+    {% empty %}
+    <p>No comments so far..</p>
     {% endfor %} {% empty %}
     <a href="{% url 'create_listing' %}">Create your Own Listing now</a>
     {% endfor %} {% endblock %}

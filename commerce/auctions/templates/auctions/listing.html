@@ -43,7 +43,8 @@
 <h2><strong>Comments</strong></h2>
 {% for com in list.comment.all %}
 <p>
-  {{com.comment}} by: <span><strong>{{com.user}}</strong></span> {{com.time}}
+  <span><strong>{{com.user}}</strong></span
+  >: {{com.comment}} -{{com.time.date}}
 </p>
 
 {% endfor %} {% endif %} {% endif %}{% endblock %}

@@ -1,5 +1,6 @@
 
 
+from typing import Literal
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,10 +11,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 import os
+from pytz import timezone
 
 def index(request):
+    listing = Listing.objects.all()
     return render(request, "auctions/index.html",{
-        'listing':Listing.objects.all()
+        'listing': listing,
     })
 
 
@@ -79,7 +82,8 @@ def specific(request,cat_id):
     cat = Category.objects.get(pk = cat_id)
     return render(request, 'auctions/spec_category.html', {
         'catlist' :lis,
-        'title' : cat
+        'title' : cat,
+
     })
     
 @login_required

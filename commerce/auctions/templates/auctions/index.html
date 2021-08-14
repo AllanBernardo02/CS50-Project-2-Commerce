@@ -1,4 +1,5 @@
-{% extends "auctions/layout.html" %} {% block body %}
+{% extends "auctions/layout.html" %} {% block body %} {% load tz %}
+<br />
 <h2>Active Listings</h2>
 {% for list in listing %}
 <ul>
@@ -10,7 +11,9 @@
   <br />
   <strong>${{list.price}}</strong>
   <br />
+  {% timezone "Asia/Manila" %}
   <p>{{list.time}}</p>
+  {% endtimezone %}
   <a href="{% url 'listing' list.id %}">View more</a>
 </ul>
 {% endfor %} {% endblock %}
