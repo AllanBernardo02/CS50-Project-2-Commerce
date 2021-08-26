@@ -2,6 +2,6 @@ body {
   padding: 10px;
 }
 
-li {
-  color: red;
+.change {
+  color: rebeccapurple;
 }
