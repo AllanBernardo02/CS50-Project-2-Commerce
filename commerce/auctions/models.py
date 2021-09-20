@@ -3,10 +3,13 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.deletion import CASCADE
 from dateutil import tz
+
+# --run-syncdb
+
+
 class User(AbstractUser):
     pass
 
-# --run-syncdb
 
 
 class Listing(models.Model):
@@ -23,6 +26,9 @@ class Listing(models.Model):
     
     def __str__(self):
         return f"{self.title}: sold for {self.price} by {self.user}"
+    
+    def is_listing_valid(self):
+        return self.title != "" and self.price <=0 and self.user != None
 
 
 class Category(models.Model):
