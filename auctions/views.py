@@ -204,7 +204,8 @@ def show_my_listing(request):
             listing  = Listing.objects.get(pk = request.POST['delete'])
             listing.bid.all().delete()
             listing.comment.all().delete()
-            os.remove(listing.image.path)
+            if listing.image is None:
+                os.remove(listing.image.path)
             listing.delete()
             return HttpResponseRedirect(reverse("user_listing"))
             
