@@ -28,7 +28,7 @@ class Listing(models.Model):
         return f"{self.title}: sold for {self.price} by {self.user}"
     
     def is_listing_valid(self):
-        return self.title != "" and self.price >=1 and self.user != None
+        return self.title != "" and self.price >=0 and self.user != None
 
 
 class Category(models.Model):
